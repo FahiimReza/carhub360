@@ -1,17 +1,264 @@
-/* 
+/*
   PURE WHITE THEME - Clean and Bright Theme
-  Pure White with Soft Blue Accents
+  Pure White with Enhanced Contrast and Consistent Colors
 */
+
+/* Global Font Settings for All Themes */
+body.pure-white-theme,
+body.pure-white-theme * {
+  font-family: 'Open Sans', sans-serif !important;
+}
 
 /* Pure White Theme Implementation */
 body.pure-white-theme {
   background: #ffffff;
   color: #212529;
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 50%, rgba(0, 102, 204, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(111, 66, 193, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 40% 20%, rgba(232, 62, 140, 0.05) 0%, transparent 50%);
   background-attachment: fixed;
+}
+
+/* Ensure all text elements are visible in white theme */
+body.pure-white-theme,
+body.pure-white-theme p,
+body.pure-white-theme span,
+body.pure-white-theme div,
+body.pure-white-theme li,
+body.pure-white-theme td,
+body.pure-white-theme th,
+body.pure-white-theme label,
+body.pure-white-theme input,
+body.pure-white-theme textarea,
+body.pure-white-theme select {
+  color: #212529 !important;
+}
+
+/* Headers with enhanced contrast */
+body.pure-white-theme h1,
+body.pure-white-theme h2,
+body.pure-white-theme h3,
+body.pure-white-theme h4,
+body.pure-white-theme h5,
+body.pure-white-theme h6 {
+  color: #0d1b2a !important;
+  font-weight: 600;
+}
+
+/* Links with better contrast */
+body.pure-white-theme a {
+  color: #0066cc !important;
+}
+
+body.pure-white-theme a:hover {
+  color: #0052a3 !important;
+}
+
+/* Ensure all buttons have proper contrast */
+body.pure-white-theme .btn-primary {
+  background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%) !important;
+  color: #ffffff !important;
+}
+
+body.pure-white-theme .btn-secondary {
+  background: transparent !important;
+  color: #0066cc !important;
+  border-color: #0066cc !important;
+}
+
+body.pure-white-theme .btn-accent {
+  background: #e83e8c !important;
+  color: #ffffff !important;
+}
+
+/* Cards with proper contrast */
+body.pure-white-theme .glass-card,
+body.pure-white-theme .card,
+body.pure-white-theme .car-card {
+  background: #ffffff !important;
+  color: #212529 !important;
+  border-color: #e9ecef !important;
+}
+
+/* Form elements with proper contrast */
+body.pure-white-theme input,
+body.pure-white-theme textarea,
+body.pure-white-theme select {
+  background: #f8f9fa !important;
+  color: #212529 !important;
+  border-color: #ced4da !important;
+}
+
+body.pure-white-theme input::placeholder,
+body.pure-white-theme textarea::placeholder {
+  color: #6c757d !important;
+}
+
+/* Navigation with proper contrast */
+body.pure-white-theme .navbar {
+  background: #ffffff !important;
+  border-color: #e9ecef !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+body.pure-white-theme .nav-link {
+  color: #495057 !important;
+}
+
+body.pure-white-theme .nav-link:hover {
+  color: #0066cc !important;
+}
+
+/* Tables with proper contrast */
+body.pure-white-theme table {
+  background: #ffffff !important;
+  color: #212529 !important;
+}
+
+body.pure-white-theme th {
+  background: #f8f9fa !important;
+  color: #212529 !important;
+  border-color: #e9ecef !important;
+}
+
+body.pure-white-theme td {
+  color: #212529 !important;
+  border-color: #e9ecef !important;
+}
+
+/* Modal with proper contrast */
+body.pure-white-theme .modal {
+  background: #ffffff !important;
+  color: #212529 !important;
+}
+
+body.pure-white-theme .modal-header {
+  background: #f8f9fa !important;
+  color: #212529 !important;
+  border-color: #e9ecef !important;
+}
+
+/* Code blocks with proper contrast */
+body.pure-white-theme pre,
+body.pure-white-theme code {
+  background: #f8f9fa !important;
+  color: #d63384 !important;
+  border-color: #e9ecef !important;
+}
+
+/* Alerts with proper contrast */
+body.pure-white-theme .alert {
+  color: #212529 !important;
+}
+
+body.pure-white-theme .alert-success {
+  background: #d1e7dd !important;
+  border-color: #badbcc !important;
+  color: #0f5132 !important;
+}
+
+body.pure-white-theme .alert-warning {
+  background: #fff3cd !important;
+  border-color: #ffecb5 !important;
+  color: #664d03 !important;
+}
+
+body.pure-white-theme .alert-error {
+  background: #f8d7da !important;
+  border-color: #f5c2c7 !important;
+  color: #842029 !important;
+}
+
+/* Override Tailwind CSS variables for white theme */
+body.pure-white-theme {
+  --primary-color: #0066cc !important;
+  --secondary-color: #6f42c1 !important;
+  --accent-color: #e83e8c !important;
+  --success-color: #28a745 !important;
+  --warning-color: #ffc107 !important;
+  --bg-primary: #ffffff !important;
+  --bg-secondary: #f8f9fa !important;
+  --bg-card: #ffffff !important;
+  --text-primary: #212529 !important;
+  --text-secondary: #6c757d !important;
+  --gradient-primary: linear-gradient(135deg, #0066cc 0%, #6f42c1 100%) !important;
+}
+
+/* Override Tailwind utility classes for white theme */
+body.pure-white-theme .text-\[var\(--text-primary\)\] {
+  color: #212529 !important;
+}
+
+body.pure-white-theme .bg-\[var\(--bg-primary\)\] {
+  background: #ffffff !important;
+}
+
+body.pure-white-theme .bg-\[var\(--bg-card\)\] {
+  background: #ffffff !important;
+}
+
+/* Override any potential inline styles with white text */
+body.pure-white-theme *[style*="color: white"],
+body.pure-white-theme *[style*="color: #fff"],
+body.pure-white-theme *[style*="color:#fff"],
+body.pure-white-theme *[style*='color: white'],
+body.pure-white-theme *[style*='color: #fff'],
+body.pure-white-theme *[style*='color:#fff'] {
+  color: #212529 !important;
+}
+
+/* Override any potential inline styles with dark background */
+body.pure-white-theme *[style*="background: #000"],
+body.pure-white-theme *[style*="background:#000"],
+body.pure-white-theme *[style*="background: black"],
+body.pure-white-theme *[style*="background:black"],
+body.pure-white-theme *[style*='background: #000'],
+body.pure-white-theme *[style*='background:#000'],
+body.pure-white-theme *[style*='background: black'],
+body.pure-white-theme *[style*='background:black'] {
+  background: #ffffff !important;
+}
+
+/* Ensure all icons are visible */
+body.pure-white-theme .icon-car:before,
+body.pure-white-theme .icon-user:before,
+body.pure-white-theme .icon-menu:before,
+body.pure-white-theme .icon-x:before,
+body.pure-white-theme .icon-search:before,
+body.pure-white-theme .icon-key:before,
+body.pure-white-theme .icon-shopping-cart:before,
+body.pure-white-theme .icon-wrench:before,
+body.pure-white-theme .icon-zap:before,
+body.pure-white-theme .icon-log-out:before,
+body.pure-white-theme .icon-message-circle:before,
+body.pure-white-theme .icon-bot:before,
+body.pure-white-theme .icon-send:before,
+body.pure-white-theme .icon-star:before,
+body.pure-white-theme .icon-scales:before,
+body.pure-white-theme .icon-calendar:before,
+body.pure-white-theme .icon-shield-check:before,
+body.pure-white-theme .icon-clock:before,
+body.pure-white-theme .icon-phone:before {
+  filter: brightness(0) !important;
+}
+
+/* Hero section title visibility in white mode */
+body.pure-white-theme h1 span.bg-gradient-to-r {
+  background: linear-gradient(135deg, #0066cc 0%, #6f42c1 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Enhanced navbar styles for white theme */
+body.pure-white-theme header.navbar {
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.pure-white-theme .nav-link {
+  font-weight: 600 !important;
 }
 
 /* Enhanced Scrollbars for White Theme */

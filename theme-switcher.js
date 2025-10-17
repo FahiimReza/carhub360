@@ -4,9 +4,7 @@
 class ThemeSwitcher {
   constructor() {
     this.themes = {
-      light: 'light-theme',
-      dark: 'dark-theme',
-      ultraDark: 'ultra-dark',
+      dark: 'ultra-dark',
       pureWhite: 'pure-white-theme'
     };
     
@@ -40,8 +38,8 @@ class ThemeSwitcher {
       return this.themes.dark;
     }
     
-    // Default to light
-    return this.themes.light;
+    // Default to pure white
+    return this.themes.pureWhite;
   }
 
   saveTheme(theme) {
@@ -54,9 +52,7 @@ class ThemeSwitcher {
     document.body.classList.remove(...Object.values(this.themes));
     
     // Apply new theme
-    if (theme !== this.themes.light) {
-      document.body.classList.add(theme);
-    }
+    document.body.classList.add(theme);
     
     // Update theme toggle button
     this.updateToggleButton(theme);
@@ -97,13 +93,11 @@ class ThemeSwitcher {
 
   getThemeIcon(theme) {
     const icons = {
-      [this.themes.light]: '🌞',
-      [this.themes.dark]: '🌙',
-      [this.themes.ultraDark]: '⚫',
+      [this.themes.dark]: '⚫',
       [this.themes.pureWhite]: '💡'
     };
     
-    return icons[theme] || '🌞';
+    return icons[theme] || '💡';
   }
 
   updateToggleButton(theme) {
@@ -120,10 +114,8 @@ class ThemeSwitcher {
   }
 
   toggleTheme() {
-    const themes = Object.values(this.themes);
-    const currentIndex = themes.indexOf(this.currentTheme);
-    const nextIndex = (currentIndex + 1) % themes.length;
-    const nextTheme = themes[nextIndex];
+    // Toggle between dark and pure white themes
+    const nextTheme = this.currentTheme === this.themes.dark ? this.themes.pureWhite : this.themes.dark;
     
     this.applyTheme(nextTheme);
     this.saveTheme(nextTheme);
@@ -197,13 +189,6 @@ class ThemeSwitcher {
         this.applyTheme(this.themes.dark);
         this.saveTheme(this.themes.dark);
       }
-      
-      // Ctrl/Cmd + Shift + U for ultra dark theme
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'U') {
-        e.preventDefault();
-        this.applyTheme(this.themes.ultraDark);
-        this.saveTheme(this.themes.ultraDark);
-      }
     });
   }
 
@@ -214,12 +199,7 @@ class ThemeSwitcher {
 
   // Public method to check if dark theme is active
   isDarkTheme() {
-    return this.currentTheme === this.themes.dark || this.currentTheme === this.themes.ultraDark;
-  }
-
-  // Public method to check if ultra dark theme is active
-  isUltraDarkTheme() {
-    return this.currentTheme === this.themes.ultraDark;
+    return this.currentTheme === this.themes.dark;
   }
 
   // Public method to check if pure white theme is active

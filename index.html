@@ -36,6 +36,9 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="dark-theme.css" rel="stylesheet">
     <link href="pure-white-theme.css" rel="stylesheet">
     <link href="logo-animations.css" rel="stylesheet">
@@ -62,8 +65,13 @@
 
     @layer base {
         body {
-            @apply text-[var(--text-primary)] font-sans;
+            @apply text-[var(--text-primary)];
+            font-family: 'Open Sans', sans-serif;
             background: var(--bg-primary);
+        }
+        
+        * {
+            font-family: 'Open Sans', sans-serif;
         }
         
         * {

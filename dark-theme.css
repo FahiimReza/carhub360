@@ -1,8 +1,17 @@
 
-/* 
+/*
   ULTRA DARK THEME - The Darkest Ever Theme
   Pure OLED Black with Enhanced Contrast and Glow Effects
 */
+
+/* Global Font Settings for All Themes */
+* {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif !important;
+}
 
 :root {
   /* Ultra Dark Color Palette */

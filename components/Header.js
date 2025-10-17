@@ -1,9 +1,18 @@
 function Header() {
   try {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    
+    // Get current page name from URL
+    const getCurrentPage = () => {
+      const path = window.location.pathname;
+      const filename = path.split('/').pop();
+      return filename || 'index.html';
+    };
+    
+    const currentPage = getCurrentPage();
 
     return (
-      <header className="fixed top-0 w-full z-50 glass-card border-b border-white/10 animate-slide-up backdrop-blur-xl" data-name="header" data-file="components/Header.js">
+      <header className="fixed top-0 w-full z-50 glass-card border-b border-white/10 animate-slide-up backdrop-blur-2xl" data-name="header" data-file="components/Header.js">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo on the left */}
           <div className="flex items-center space-x-2 hover-glow cursor-pointer transition-all duration-300" onClick={() => window.location.href = 'index.html'}>
@@ -33,42 +42,75 @@ function Header() {
                 </div>
               </div>
             </div>
-            <span className="text-2xl font-bold text-[var(--text-primary)] bg-gradient-to-r from-[var(--primary-color)] to-white bg-clip-text text-transparent animate-logo-text">CarHub360</span>
+            <span className="text-2xl font-semibold text-[var(--text-primary)] bg-gradient-to-r from-[var(--primary-color)] to-white bg-clip-text text-transparent animate-logo-text">CarHub360</span>
           </div>
 
           {/* Centered Navigation */}
           <nav className="hidden md:flex items-center space-x-8 flex-1 justify-center">
-            <a href="index.html#cars" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Cars</a>
-            <a href="compare.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Compare</a>
-            <a href="blog.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Blog</a>
+            <a href="index.html#cars" className={`${currentPage === 'index.html' || currentPage === '' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+              Cars
+              {currentPage === 'index.html' || currentPage === '' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+            </a>
+            <a href="compare.html" className={`${currentPage === 'compare.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+              Compare
+              {currentPage === 'compare.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+            </a>
+            <a href="blog.html" className={`${currentPage === 'blog.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+              Blog
+              {currentPage === 'blog.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+            </a>
             {(() => {
               const currentUser = localStorage.getItem('currentUser');
               if (currentUser) {
                 const user = JSON.parse(currentUser);
                 if (user.role === 'admin') {
-                  return <a href="configurator.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Configurator</a>;
+                  return <a href="configurator.html" className={`${currentPage === 'configurator.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+                    Configurator
+                    {currentPage === 'configurator.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+                  </a>;
                 }
               }
               return null;
             })()}
-            <a href="services.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Services</a>
-            <a href="locations.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Locations</a>
-            <a href="booking.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Bookings</a>
+            <a href="services.html" className={`${currentPage === 'services.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+              Services
+              {currentPage === 'services.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+            </a>
+            <a href="locations.html" className={`${currentPage === 'locations.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+              Locations
+              {currentPage === 'locations.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+            </a>
+            <a href="booking.html" className={`${currentPage === 'booking.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+              Bookings
+              {currentPage === 'booking.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+            </a>
             {(() => {
               const currentUser = localStorage.getItem('currentUser');
               if (currentUser) {
-                return <a href="messages.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Messages</a>;
+                return <a href="messages.html" className={`${currentPage === 'messages.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+                  Messages
+                  {currentPage === 'messages.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+                </a>;
               } else {
-                return <a href="guest-contact.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Contact</a>;
+                return <a href="guest-contact.html" className={`${currentPage === 'guest-contact.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+                  Contact
+                  {currentPage === 'guest-contact.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+                </a>;
               }
             })()}
-            <a href="about.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">About</a>
+            <a href="about.html" className={`${currentPage === 'about.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+              About
+              {currentPage === 'about.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+            </a>
             {(() => {
               const currentUser = localStorage.getItem('currentUser');
               if (currentUser) {
                 const user = JSON.parse(currentUser);
                 if (user.role === 'admin') {
-                  return <a href="admin.html" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect">Admin</a>;
+                  return <a href="admin.html" className={`${currentPage === 'admin.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} hover:text-[var(--primary-color)] transition-all duration-300 hover:scale-110 magnetic-effect font-semibold relative`}>
+                    Admin
+                    {currentPage === 'admin.html' ? <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary-color)] rounded-full"></span> : null}
+                  </a>;
                 }
               }
               return null;
@@ -106,7 +148,7 @@ function Header() {
                 );
               } else {
                 return (
-                  <a href="login.html" className="btn-primary hover-shine hover-lift px-4 py-2 rounded-full text-sm">
+                  <a href="login.html" className="btn-primary hover-shine hover-lift px-4 py-2 rounded-full text-sm font-semibold">
                     <svg className="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
@@ -138,43 +180,65 @@ function Header() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden glass-card border-t border-white/10">
+          <div className="md:hidden glass-card border-t border-white/10 backdrop-blur-2xl">
             <div className="px-6 py-4 space-y-3">
               <div className="flex items-center justify-between pb-3 border-b border-white/10">
                 <span className="text-[var(--text-primary)] font-semibold">Menu</span>
               </div>
               
-              <a href="index.html#cars" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Cars</a>
-              <a href="compare.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Compare</a>
-              <a href="blog.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Blog</a>
+              <a href="index.html#cars" className={`${currentPage === 'index.html' || currentPage === '' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                Cars
+              </a>
+              <a href="compare.html" className={`${currentPage === 'compare.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                Compare
+              </a>
+              <a href="blog.html" className={`${currentPage === 'blog.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                Blog
+              </a>
               {(() => {
                 const currentUser = localStorage.getItem('currentUser');
                 if (currentUser) {
                   const user = JSON.parse(currentUser);
                   if (user.role === 'admin') {
-                    return <a href="configurator.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Configurator</a>;
+                    return <a href="configurator.html" className={`${currentPage === 'configurator.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                      Configurator
+                    </a>;
                   }
                 }
                 return null;
               })()}
-              <a href="services.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Services</a>
-              <a href="locations.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Locations</a>
-              <a href="booking.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Bookings</a>
+              <a href="services.html" className={`${currentPage === 'services.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                Services
+              </a>
+              <a href="locations.html" className={`${currentPage === 'locations.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                Locations
+              </a>
+              <a href="booking.html" className={`${currentPage === 'booking.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                Bookings
+              </a>
               {(() => {
                 const currentUser = localStorage.getItem('currentUser');
                 if (currentUser) {
-                  return <a href="messages.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Messages</a>;
+                  return <a href="messages.html" className={`${currentPage === 'messages.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                    Messages
+                  </a>;
                 } else {
-                  return <a href="guest-contact.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Contact</a>;
+                  return <a href="guest-contact.html" className={`${currentPage === 'guest-contact.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                    Contact
+                  </a>;
                 }
               })()}
-              <a href="about.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">About</a>
+              <a href="about.html" className={`${currentPage === 'about.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                About
+              </a>
               {(() => {
                 const currentUser = localStorage.getItem('currentUser');
                 if (currentUser) {
                   const user = JSON.parse(currentUser);
                   if (user.role === 'admin') {
-                    return <a href="admin.html" className="block py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">Admin</a>;
+                    return <a href="admin.html" className={`${currentPage === 'admin.html' ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'} block py-2 hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold`}>
+                      Admin
+                    </a>;
                   }
                 }
                 return null;
@@ -187,7 +251,7 @@ function Header() {
                     const user = JSON.parse(currentUser);
                     return (
                       <div className="space-y-3">
-                        <a href="dashboard.html" className="flex items-center py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300">
+                        <a href="dashboard.html" className="flex items-center py-2 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors duration-300 font-semibold">
                           <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                           </svg>
@@ -208,7 +272,7 @@ function Header() {
                       </div>
                     );
                   } else {
-                    return <a href="login.html" className="btn-primary w-full block text-center py-2">Login</a>;
+                    return <a href="login.html" className="btn-primary w-full block text-center py-2 font-semibold">Login</a>;
                   }
                 })()}
               </div>

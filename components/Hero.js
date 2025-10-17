@@ -14,13 +14,13 @@ function Hero({ activeTab, setActiveTab }) {
           {/* Main Heading */}
           <div className="animate-slide-up">
             <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-[var(--primary-color)] via-white to-[var(--secondary-color)] bg-clip-text text-transparent animate-gradient">
+              <span className="bg-gradient-to-r from-[var(--primary-color)] via-[var(--primary-color)] to-[var(--secondary-color)] bg-clip-text text-transparent animate-gradient">
                 Rent or Buy
               </span>
               <br />
               <span className="text-[var(--text-primary)] text-5xl md:text-7xl">Your Dream Car</span>
               <br />
-              <span className="text-2xl md:text-3xl text-[var(--text-secondary)] font-light">in Bangladesh</span>
+              <span className="text-2xl md:text-3xl text-[var(--text-secondary)] font-semibold">in Bangladesh</span>
             </h1>
           </div>
 
