@@ -1,0 +1,396 @@
+/* 
+  PURE WHITE THEME - Clean and Bright Theme
+  Pure White with Soft Blue Accents
+*/
+
+/* Pure White Theme Implementation */
+body.pure-white-theme {
+  background: #ffffff;
+  color: #212529;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0, 102, 204, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(111, 66, 193, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(232, 62, 140, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Enhanced Scrollbars for White Theme */
+body.pure-white-theme *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.pure-white-theme *::-webkit-scrollbar-track {
+  background: #f8f9fa;
+}
+
+body.pure-white-theme *::-webkit-scrollbar-thumb {
+  background: #0066cc;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1), 0 4px 20px rgba(0, 102, 204, 0.05);
+}
+
+body.pure-white-theme *::-webkit-scrollbar-thumb:hover {
+  background: #6f42c1;
+  box-shadow: 0 2px 10px rgba(111, 66, 193, 0.1), 0 4px 20px rgba(111, 66, 193, 0.05);
+}
+
+/* Enhanced Cards for White Theme */
+body.pure-white-theme .glass-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+body.pure-white-theme .glass-card:hover {
+  background: #ffffff;
+  border-color: #0066cc;
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1), 0 4px 20px rgba(0, 102, 204, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Enhanced Buttons for White Theme */
+body.pure-white-theme .btn-primary {
+  background: linear-gradient(135deg, #0066cc 0%, #6f42c1 100%);
+  color: #ffffff;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1), 0 4px 20px rgba(0, 102, 204, 0.05);
+  transition: all 0.3s ease;
+}
+
+body.pure-white-theme .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 102, 204, 0.3), 0 8px 30px rgba(0, 102, 204, 0.2);
+}
+
+body.pure-white-theme .btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+body.pure-white-theme .btn-primary:hover::before {
+  left: 100%;
+}
+
+body.pure-white-theme .btn-secondary {
+  background: transparent;
+  color: #0066cc;
+  border: 2px solid #0066cc;
+  box-shadow: inset 0 0 10px rgba(0, 102, 204, 0.1);
+  transition: all 0.3s ease;
+}
+
+body.pure-white-theme .btn-secondary:hover {
+  background: #0066cc;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1), 0 4px 20px rgba(0, 102, 204, 0.05);
+  transform: translateY(-2px);
+}
+
+body.pure-white-theme .btn-accent {
+  background: #e83e8c;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 10px rgba(232, 62, 140, 0.1), 0 4px 20px rgba(232, 62, 140, 0.05);
+  transition: all 0.3s ease;
+}
+
+body.pure-white-theme .btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(232, 62, 140, 0.3), 0 8px 30px rgba(232, 62, 140, 0.2);
+}
+
+/* Enhanced Car Cards for White Theme */
+body.pure-white-theme .car-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+body.pure-white-theme .car-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #0066cc 0%, #6f42c1 100%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+body.pure-white-theme .car-card:hover {
+  transform: translateY(-5px);
+  border-color: #0066cc;
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1), 0 4px 20px rgba(0, 102, 204, 0.05);
+}
+
+body.pure-white-theme .car-card:hover::before {
+  opacity: 0.1;
+}
+
+/* Enhanced Form Elements for White Theme */
+body.pure-white-theme input,
+body.pure-white-theme textarea,
+body.pure-white-theme select {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #212529;
+  transition: all 0.3s ease;
+}
+
+body.pure-white-theme input:focus,
+body.pure-white-theme textarea:focus,
+body.pure-white-theme select:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 10px rgba(0, 102, 204, 0.2);
+}
+
+/* Enhanced Navigation for White Theme */
+body.pure-white-theme .navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.pure-white-theme .nav-link {
+  color: #6c757d;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+body.pure-white-theme .nav-link:hover {
+  color: #0066cc;
+}
+
+body.pure-white-theme .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #0066cc 0%, #6f42c1 100%);
+  transition: width 0.3s ease;
+}
+
+body.pure-white-theme .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Enhanced Modal/Popup for White Theme */
+body.pure-white-theme .modal {
+  background: #ffffff;
+  border: 1px solid #0066cc;
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1), 0 4px 20px rgba(0, 102, 204, 0.05);
+  backdrop-filter: blur(20px);
+}
+
+body.pure-white-theme .modal-header {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* Enhanced Tables for White Theme */
+body.pure-white-theme table {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+}
+
+body.pure-white-theme th {
+  background: #f8f9fa;
+  border-bottom: 1px solid #0066cc;
+  color: #0066cc;
+}
+
+body.pure-white-theme td {
+  border-bottom: 1px solid #e9ecef;
+}
+
+body.pure-white-theme tr:hover {
+  background: rgba(0, 102, 204, 0.05);
+}
+
+/* Enhanced Code Blocks for White Theme */
+body.pure-white-theme pre,
+body.pure-white-theme code {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #0066cc;
+}
+
+/* Enhanced Alerts for White Theme */
+body.pure-white-theme .alert {
+  border-left: 4px solid #0066cc;
+  background: rgba(0, 102, 204, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 102, 204, 0.05);
+}
+
+body.pure-white-theme .alert-success {
+  border-left-color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+  box-shadow: inset 0 0 10px rgba(40, 167, 69, 0.05);
+}
+
+body.pure-white-theme .alert-warning {
+  border-left-color: #ffc107;
+  background: rgba(255, 193, 7, 0.1);
+  box-shadow: inset 0 0 10px rgba(255, 193, 7, 0.05);
+}
+
+body.pure-white-theme .alert-error {
+  border-left-color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+  box-shadow: inset 0 0 10px rgba(220, 53, 69, 0.05);
+}
+
+/* Enhanced Loading Spinner for White Theme */
+body.pure-white-theme .spinner {
+  border: 3px solid #e9ecef;
+  border-top: 3px solid #0066cc;
+  box-shadow: 0 0 10px rgba(0, 102, 204, 0.2);
+}
+
+/* Enhanced Progress Bar for White Theme */
+body.pure-white-theme .progress-bar {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+body.pure-white-theme .progress-fill {
+  background: linear-gradient(135deg, #0066cc 0%, #6f42c1 100%);
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1), 0 4px 20px rgba(0, 102, 204, 0.05);
+}
+
+/* Enhanced Tooltips for White Theme */
+body.pure-white-theme .tooltip {
+  background: #ffffff;
+  border: 1px solid #0066cc;
+  color: #212529;
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1), 0 4px 20px rgba(0, 102, 204, 0.05);
+}
+
+/* Pure White Theme Toggle Button */
+body.pure-white-theme .theme-toggle {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 249, 250, 0.9));
+  border-color: rgba(0, 102, 204, 0.2);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(0, 102, 204, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+body.pure-white-theme .theme-toggle-slider {
+  transform: translateX(0);
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 0 10px rgba(0, 102, 204, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+body.pure-white-theme .theme-toggle-slider::after {
+  content: '☀️';
+  transform: rotate(0deg);
+}
+
+body.pure-white-theme .theme-toggle:hover {
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 0 30px rgba(0, 102, 204, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* White Theme Typography */
+body.pure-white-theme h1,
+body.pure-white-theme h2,
+body.pure-white-theme h3,
+body.pure-white-theme h4,
+body.pure-white-theme h5,
+body.pure-white-theme h6 {
+  color: #212529;
+}
+
+body.pure-white-theme h1 {
+  background: linear-gradient(135deg, #0066cc 0%, #6f42c1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* White Theme Links */
+body.pure-white-theme a {
+  color: #0066cc;
+  transition: all 0.3s ease;
+}
+
+body.pure-white-theme a:hover {
+  color: #6f42c1;
+}
+
+/* White Theme Images */
+body.pure-white-theme img {
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+body.pure-white-theme img:hover {
+  opacity: 0.9;
+  filter: brightness(1.05);
+}
+
+/* White Theme Animations */
+body.pure-white-theme .soft-pulse {
+  animation: soft-pulse 2s ease-in-out infinite;
+}
+
+@keyframes soft-pulse {
+  0%, 100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.05);
+  }
+}
+
+/* White Theme Performance Optimizations */
+body.pure-white-theme * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.pure-white-theme .gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* White Theme Responsive */
+@media (max-width: 768px) {
+  body.pure-white-theme {
+    background-image:
+      radial-gradient(circle at 50% 50%, rgba(0, 102, 204, 0.03) 0%, transparent 50%);
+  }
+  
+  body.pure-white-theme .theme-toggle-slider {
+    transform: translateX(0);
+  }
+}

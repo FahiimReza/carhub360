@@ -6,7 +6,8 @@ class ThemeSwitcher {
     this.themes = {
       light: 'light-theme',
       dark: 'dark-theme',
-      ultraDark: 'ultra-dark'
+      ultraDark: 'ultra-dark',
+      pureWhite: 'pure-white-theme'
     };
     
     this.currentTheme = this.loadTheme();
@@ -98,7 +99,8 @@ class ThemeSwitcher {
     const icons = {
       [this.themes.light]: '🌞',
       [this.themes.dark]: '🌙',
-      [this.themes.ultraDark]: '⚫'
+      [this.themes.ultraDark]: '⚫',
+      [this.themes.pureWhite]: '💡'
     };
     
     return icons[theme] || '🌞';
@@ -182,11 +184,11 @@ class ThemeSwitcher {
         this.toggleTheme();
       }
       
-      // Ctrl/Cmd + Shift + L for light theme
+      // Ctrl/Cmd + Shift + L for pure white theme
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'L') {
         e.preventDefault();
-        this.applyTheme(this.themes.light);
-        this.saveTheme(this.themes.light);
+        this.applyTheme(this.themes.pureWhite);
+        this.saveTheme(this.themes.pureWhite);
       }
       
       // Ctrl/Cmd + Shift + N for dark theme
@@ -218,6 +220,11 @@ class ThemeSwitcher {
   // Public method to check if ultra dark theme is active
   isUltraDarkTheme() {
     return this.currentTheme === this.themes.ultraDark;
+  }
+
+  // Public method to check if pure white theme is active
+  isPureWhiteTheme() {
+    return this.currentTheme === this.themes.pureWhite;
   }
 }
 

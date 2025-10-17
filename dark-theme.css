@@ -46,6 +46,48 @@
   --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
 
+/* Pure White Theme Variables */
+:root {
+  /* Pure White Color Palette */
+  --pure-white-bg: #ffffff;
+  --pure-white-surface: #f8f9fa;
+  --pure-white-card: #ffffff;
+  --pure-white-border: #e9ecef;
+  
+  /* Soft Colors for White Theme */
+  --soft-blue: #0066cc;
+  --soft-purple: #6f42c1;
+  --soft-pink: #e83e8c;
+  --soft-green: #28a745;
+  --soft-yellow: #ffc107;
+  --soft-red: #dc3545;
+  
+  /* Primary Colors for White Theme */
+  --primary-color-white: #0066cc;
+  --secondary-color-white: #6f42c1;
+  --accent-color-white: #e83e8c;
+  --success-color-white: #28a745;
+  --warning-color-white: #ffc107;
+  --error-color-white: #dc3545;
+  
+  /* Text Colors for White Theme */
+  --text-primary-white: #212529;
+  --text-secondary-white: #6c757d;
+  --text-muted-white: #adb5bd;
+  
+  /* Gradients for White Theme */
+  --gradient-primary-white: linear-gradient(135deg, #0066cc 0%, #6f42c1 100%);
+  --gradient-secondary-white: linear-gradient(135deg, #6f42c1 0%, #28a745 100%);
+  --gradient-accent-white: linear-gradient(135deg, #ffc107 0%, #dc3545 100%);
+  --gradient-white: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+  
+  /* Shadows for White Theme */
+  --shadow-soft-blue: 0 2px 10px rgba(0, 102, 204, 0.1), 0 4px 20px rgba(0, 102, 204, 0.05);
+  --shadow-soft-purple: 0 2px 10px rgba(111, 66, 193, 0.1), 0 4px 20px rgba(111, 66, 193, 0.05);
+  --shadow-soft-pink: 0 2px 10px rgba(232, 62, 140, 0.1), 0 4px 20px rgba(232, 62, 140, 0.05);
+  --shadow-white: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
 /* Base Theme Application */
 body.dark-theme {
   background: var(--ultra-dark-bg);
@@ -614,6 +656,398 @@ body.dark-theme::before {
   }
   50% {
     opacity: 0.3;
+  }
+  
+  /* Pure White Theme Implementation */
+  body.pure-white-theme {
+    background: var(--pure-white-bg);
+    color: var(--text-primary-white);
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(0, 102, 204, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(111, 66, 193, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(232, 62, 140, 0.05) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+  
+  /* Enhanced Scrollbars for White Theme */
+  body.pure-white-theme *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  body.pure-white-theme *::-webkit-scrollbar-track {
+    background: var(--pure-white-surface);
+  }
+  
+  body.pure-white-theme *::-webkit-scrollbar-thumb {
+    background: var(--primary-color-white);
+    border-radius: 4px;
+    box-shadow: var(--shadow-soft-blue);
+  }
+  
+  body.pure-white-theme *::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color-white);
+    box-shadow: var(--shadow-soft-purple);
+  }
+  
+  /* Enhanced Cards for White Theme */
+  body.pure-white-theme .glass-card {
+    background: var(--pure-white-card);
+    border: 1px solid var(--pure-white-border);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-white);
+    transition: all 0.3s ease;
+  }
+  
+  body.pure-white-theme .glass-card:hover {
+    background: #ffffff;
+    border-color: var(--primary-color-white);
+    box-shadow: var(--shadow-soft-blue);
+    transform: translateY(-2px);
+  }
+  
+  /* Enhanced Buttons for White Theme */
+  body.pure-white-theme .btn-primary {
+    background: var(--gradient-primary-white);
+    color: #ffffff;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft-blue);
+    transition: all 0.3s ease;
+  }
+  
+  body.pure-white-theme .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 102, 204, 0.3), 0 8px 30px rgba(0, 102, 204, 0.2);
+  }
+  
+  body.pure-white-theme .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  body.pure-white-theme .btn-primary:hover::before {
+    left: 100%;
+  }
+  
+  body.pure-white-theme .btn-secondary {
+    background: transparent;
+    color: var(--primary-color-white);
+    border: 2px solid var(--primary-color-white);
+    box-shadow: inset 0 0 10px rgba(0, 102, 204, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  body.pure-white-theme .btn-secondary:hover {
+    background: var(--primary-color-white);
+    color: #ffffff;
+    box-shadow: var(--shadow-soft-blue);
+    transform: translateY(-2px);
+  }
+  
+  body.pure-white-theme .btn-accent {
+    background: var(--accent-color-white);
+    color: #ffffff;
+    border: none;
+    box-shadow: var(--shadow-soft-pink);
+    transition: all 0.3s ease;
+  }
+  
+  body.pure-white-theme .btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(232, 62, 140, 0.3), 0 8px 30px rgba(232, 62, 140, 0.2);
+  }
+  
+  /* Enhanced Car Cards for White Theme */
+  body.pure-white-theme .car-card {
+    background: var(--pure-white-card);
+    border: 1px solid var(--pure-white-border);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  body.pure-white-theme .car-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-primary-white);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  
+  body.pure-white-theme .car-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color-white);
+    box-shadow: var(--shadow-soft-blue);
+  }
+  
+  body.pure-white-theme .car-card:hover::before {
+    opacity: 0.1;
+  }
+  
+  /* Enhanced Form Elements for White Theme */
+  body.pure-white-theme input,
+  body.pure-white-theme textarea,
+  body.pure-white-theme select {
+    background: var(--pure-white-surface);
+    border: 1px solid var(--pure-white-border);
+    color: var(--text-primary-white);
+    transition: all 0.3s ease;
+  }
+  
+  body.pure-white-theme input:focus,
+  body.pure-white-theme textarea:focus,
+  body.pure-white-theme select:focus {
+    outline: none;
+    border-color: var(--primary-color-white);
+    box-shadow: 0 0 10px rgba(0, 102, 204, 0.2);
+  }
+  
+  /* Enhanced Navigation for White Theme */
+  body.pure-white-theme .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--pure-white-border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  body.pure-white-theme .nav-link {
+    color: var(--text-secondary-white);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  body.pure-white-theme .nav-link:hover {
+    color: var(--primary-color-white);
+  }
+  
+  body.pure-white-theme .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary-white);
+    transition: width 0.3s ease;
+  }
+  
+  body.pure-white-theme .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  /* Enhanced Modal/Popup for White Theme */
+  body.pure-white-theme .modal {
+    background: var(--pure-white-card);
+    border: 1px solid var(--primary-color-white);
+    box-shadow: var(--shadow-soft-blue);
+    backdrop-filter: blur(20px);
+  }
+  
+  body.pure-white-theme .modal-header {
+    background: var(--gradient-white);
+    border-bottom: 1px solid var(--pure-white-border);
+  }
+  
+  /* Enhanced Tables for White Theme */
+  body.pure-white-theme table {
+    background: var(--pure-white-card);
+    border: 1px solid var(--pure-white-border);
+  }
+  
+  body.pure-white-theme th {
+    background: var(--pure-white-surface);
+    border-bottom: 1px solid var(--primary-color-white);
+    color: var(--primary-color-white);
+  }
+  
+  body.pure-white-theme td {
+    border-bottom: 1px solid var(--pure-white-border);
+  }
+  
+  body.pure-white-theme tr:hover {
+    background: rgba(0, 102, 204, 0.05);
+  }
+  
+  /* Enhanced Code Blocks for White Theme */
+  body.pure-white-theme pre,
+  body.pure-white-theme code {
+    background: var(--pure-white-surface);
+    border: 1px solid var(--pure-white-border);
+    color: var(--primary-color-white);
+  }
+  
+  /* Enhanced Alerts for White Theme */
+  body.pure-white-theme .alert {
+    border-left: 4px solid var(--primary-color-white);
+    background: rgba(0, 102, 204, 0.1);
+    box-shadow: inset 0 0 10px rgba(0, 102, 204, 0.05);
+  }
+  
+  body.pure-white-theme .alert-success {
+    border-left-color: var(--success-color-white);
+    background: rgba(40, 167, 69, 0.1);
+    box-shadow: inset 0 0 10px rgba(40, 167, 69, 0.05);
+  }
+  
+  body.pure-white-theme .alert-warning {
+    border-left-color: var(--warning-color-white);
+    background: rgba(255, 193, 7, 0.1);
+    box-shadow: inset 0 0 10px rgba(255, 193, 7, 0.05);
+  }
+  
+  body.pure-white-theme .alert-error {
+    border-left-color: var(--error-color-white);
+    background: rgba(220, 53, 69, 0.1);
+    box-shadow: inset 0 0 10px rgba(220, 53, 69, 0.05);
+  }
+  
+  /* Enhanced Loading Spinner for White Theme */
+  body.pure-white-theme .spinner {
+    border: 3px solid var(--pure-white-border);
+    border-top: 3px solid var(--primary-color-white);
+    box-shadow: 0 0 10px rgba(0, 102, 204, 0.2);
+  }
+  
+  /* Enhanced Progress Bar for White Theme */
+  body.pure-white-theme .progress-bar {
+    background: var(--pure-white-surface);
+    border: 1px solid var(--pure-white-border);
+  }
+  
+  body.pure-white-theme .progress-fill {
+    background: var(--gradient-primary-white);
+    box-shadow: var(--shadow-soft-blue);
+  }
+  
+  /* Enhanced Tooltips for White Theme */
+  body.pure-white-theme .tooltip {
+    background: var(--pure-white-card);
+    border: 1px solid var(--primary-color-white);
+    color: var(--text-primary-white);
+    box-shadow: var(--shadow-soft-blue);
+  }
+  
+  /* Pure White Theme Toggle Button */
+  body.pure-white-theme .theme-toggle {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 249, 250, 0.9));
+    border-color: rgba(0, 102, 204, 0.2);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 0 20px rgba(0, 102, 204, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  
+  body.pure-white-theme .theme-toggle-slider {
+    transform: translateX(0);
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    box-shadow:
+      0 4px 15px rgba(0, 0, 0, 0.1),
+      0 0 10px rgba(0, 102, 204, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  
+  body.pure-white-theme .theme-toggle-slider::after {
+    content: '☀️';
+    transform: rotate(0deg);
+  }
+  
+  body.pure-white-theme .theme-toggle:hover {
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.15),
+      0 0 30px rgba(0, 102, 204, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+  
+  /* White Theme Typography */
+  body.pure-white-theme h1,
+  body.pure-white-theme h2,
+  body.pure-white-theme h3,
+  body.pure-white-theme h4,
+  body.pure-white-theme h5,
+  body.pure-white-theme h6 {
+    color: var(--text-primary-white);
+  }
+  
+  body.pure-white-theme h1 {
+    background: var(--gradient-primary-white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* White Theme Links */
+  body.pure-white-theme a {
+    color: var(--primary-color-white);
+    transition: all 0.3s ease;
+  }
+  
+  body.pure-white-theme a:hover {
+    color: var(--secondary-color-white);
+  }
+  
+  /* White Theme Images */
+  body.pure-white-theme img {
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+  
+  body.pure-white-theme img:hover {
+    opacity: 0.9;
+    filter: brightness(1.05);
+  }
+  
+  /* White Theme Animations */
+  body.pure-white-theme .soft-pulse {
+    animation: soft-pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes soft-pulse {
+    0%, 100% {
+      opacity: 0.9;
+    }
+    50% {
+      opacity: 1;
+      filter: brightness(1.05);
+    }
+  }
+  
+  /* White Theme Performance Optimizations */
+  body.pure-white-theme * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body.pure-white-theme .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* White Theme Responsive */
+  @media (max-width: 768px) {
+    body.pure-white-theme {
+      background-image:
+        radial-gradient(circle at 50% 50%, rgba(0, 102, 204, 0.03) 0%, transparent 50%);
+    }
+    
+    body.pure-white-theme .theme-toggle-slider {
+      transform: translateX(0);
+    }
   }
 }
 
