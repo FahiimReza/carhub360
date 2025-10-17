@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00d4ff">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="CarHub360">
+    <meta name="copyright" content="© 2025 CarHub360. All rights reserved.">
+    
+    <!-- Performance -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="//images.unsplash.com">
+    <link rel="preconnect" href="https://resource.trickle.so">
+    
+    <!-- Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <title>CarHub360 - Rent or Buy Your Dream Car in Bangladesh</title>
+    <meta name="description" content="Premium car rental and buying platform in Bangladesh. Explore luxury cars, compare prices, and book instantly with verified dealers.">
+    <meta name="keywords" content="car rental Bangladesh, buy car Bangladesh, luxury cars, car booking, Dhaka cars">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="CarHub360 - Rent or Buy Your Dream Car">
+    <meta property="og:description" content="Premium car rental and buying platform in Bangladesh">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CarHub360 - Rent or Buy Your Dream Car">
+    <meta name="twitter:description" content="Premium car rental and buying platform in Bangladesh">
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <link href="dark-theme.css" rel="stylesheet">
+    <link href="logo-animations.css" rel="stylesheet">
+    <link href="centered-navigation.css" rel="stylesheet">
+    <script type="text/babel" src="utils/iconLoader.js"></script>
+
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            /* Pure OLED Dark Mode Colors */
+            --primary-color: #00d4ff;
+            --secondary-color: #ff4081;
+            --accent-color: #ffab40;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #ff4081 100%);
+        }
+    }
+
+    @layer base {
+        body {
+            @apply text-[var(--text-primary)] font-sans;
+            background: var(--bg-primary);
+        }
+        
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--bg-primary);
+        }
+    }
+
+    @layer components {
+        .glass-card {
+            @apply backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300;
+            background: var(--bg-card);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white;
+            background: var(--gradient-primary);
+        }
+        
+        .btn-secondary {
+            @apply px-6 py-3 rounded-lg font-semibold border-2 transition-all duration-200;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+        
+        .btn-accent {
+            @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white;
+            background: var(--accent-color);
+        }
+        
+        .car-card {
+            @apply glass-card p-6 transition-all duration-300 cursor-pointer;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
+        }
+    }
+
+    @layer utilities {
+        .text-shadow {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+        }
+    }
+    </style>
+    
+    <style>
+      @keyframes slide-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-slide-up {
+        animation: slide-up 0.6s ease-out forwards;
+      }
+      
+      @keyframes floating {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .floating-animation {
+        animation: floating 3s ease-in-out infinite;
+      }
+      
+      @keyframes pulse-scale {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+      .animate-pulse-scale {
+        animation: pulse-scale 2s ease-in-out infinite;
+      }
+      
+      .hover-shine::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+      }
+      .hover-shine:hover::before {
+        left: 100%;
+      }
+      
+      .hover-lift {
+        transition: all 0.3s ease;
+      }
+      .hover-lift:hover {
+        transform: translateY(-2px);
+      }
+      
+      .hover-glow {
+        transition: all 0.3s ease;
+      }
+      .hover-glow:hover {
+        box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+      }
+      
+      .magnetic-effect {
+        transition: transform 0.1s ease-out;
+      }
+      
+      .icon-car:before {
+        content: '🚗';
+        font-size: inherit;
+      }
+      
+      .icon-user:before {
+        content: '👤';
+        font-size: inherit;
+      }
+      
+      .icon-menu:before {
+        content: '☰';
+        font-size: inherit;
+      }
+      
+      .icon-x:before {
+        content: '✕';
+        font-size: inherit;
+      }
+      
+      .icon-search:before {
+        content: '🔍';
+        font-size: inherit;
+      }
+      
+      .icon-key:before {
+        content: '🔑';
+        font-size: inherit;
+      }
+      
+      .icon-shopping-cart:before {
+        content: '🛒';
+        font-size: inherit;
+      }
+      
+      .icon-wrench:before {
+        content: '🔧';
+        font-size: inherit;
+      }
+      
+      .icon-zap:before {
+        content: '⚡';
+        font-size: inherit;
+      }
+      
+      .icon-log-out:before {
+        content: '🚪';
+        font-size: inherit;
+      }
+      
+      .icon-message-circle:before {
+        content: '💬';
+        font-size: inherit;
+      }
+      
+      .icon-bot:before {
+        content: '🤖';
+        font-size: inherit;
+      }
+      
+      .icon-send:before {
+        content: '📤';
+        font-size: inherit;
+      }
+      
+      .icon-star:before {
+        content: '⭐';
+        font-size: inherit;
+      }
+      
+      .icon-scales:before {
+        content: '⚖️';
+        font-size: inherit;
+      }
+      
+      .icon-calendar:before {
+        content: '📅';
+        font-size: inherit;
+      }
+      
+      .icon-shield-check:before {
+        content: '🛡️';
+        font-size: inherit;
+      }
+      
+      .icon-clock:before {
+        content: '🕒';
+        font-size: inherit;
+      }
+      
+      .icon-phone:before {
+        content: '📞';
+        font-size: inherit;
+      }
+    </style>
+
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel" src="utils/mockDatabase.js"></script>
+    <!-- Enhanced ChatBot System -->
+    <script type="text/babel" src="utils/ConversationStateManager.js"></script>
+    <script type="text/babel" src="utils/CarKnowledgeBase.js"></script>
+    <script type="text/babel" src="utils/EnhancedAIResponseSystem.js"></script>
+    <script type="text/babel" src="utils/FollowUpQuestionSystem.js"></script>
+    <!-- Components -->
+    <script type="text/babel" src="components/ImageWithFallback.js"></script>
+    <script type="text/babel" src="components/SearchBar.js"></script>
+    <script type="text/babel" src="components/Hero.js"></script>
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/CarGrid.js"></script>
+    <script type="text/babel" src="components/CarCard.js"></script>
+    <script type="text/babel" src="components/Features.js"></script>
+    <script type="text/babel" src="components/Games.js"></script>
+    <script type="text/babel" src="components/Footer.js"></script>
+    <script type="text/babel" src="components/ChatBot.js"></script>
+    <script type="text/babel" src="components/SearchModal.js"></script>
+    <script type="text/babel" src="app.js"></script>
+    <script src="theme-switcher.js"></script>
+</body>
+</html>

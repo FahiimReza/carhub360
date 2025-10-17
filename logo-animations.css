@@ -1,0 +1,230 @@
+/* CarHub360 Logo Animations */
+
+/* Road lines animation */
+@keyframes road-move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 0;
+    }
+}
+
+.animate-road-move {
+    animation: road-move 1.5s linear infinite;
+}
+
+/* Speed lines animation */
+@keyframes speed-line-1 {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.6;
+    }
+    80% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateX(200%);
+        opacity: 0;
+    }
+}
+
+@keyframes speed-line-2 {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    30% {
+        opacity: 0.4;
+    }
+    70% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateX(200%);
+        opacity: 0;
+    }
+}
+
+@keyframes speed-line-3 {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.2;
+    }
+    60% {
+        opacity: 0.2;
+    }
+    100% {
+        transform: translateX(200%);
+        opacity: 0;
+    }
+}
+
+.animate-speed-line-1 {
+    animation: speed-line-1 2s ease-in-out infinite;
+}
+
+.animate-speed-line-2 {
+    animation: speed-line-2 2s ease-in-out infinite 0.3s;
+}
+
+.animate-speed-line-3 {
+    animation: speed-line-3 2s ease-in-out infinite 0.6s;
+}
+
+/* Car hover animation */
+@keyframes car-hover {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+.animate-car-hover {
+    animation: car-hover 3s ease-in-out infinite;
+}
+
+/* Pulse glow animation */
+@keyframes pulse-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+    }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Logo text animation */
+@keyframes logo-text {
+    0%, 100% {
+        background-size: 100% 100%;
+        background-position: 0% 50%;
+    }
+    50% {
+        background-size: 120% 120%;
+        background-position: 100% 50%;
+    }
+}
+
+.animate-logo-text {
+    background-size: 100% 100%;
+    background-position: 0% 50%;
+    animation: logo-text 4s ease-in-out infinite;
+    background-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Logo container pulse animation */
+@keyframes pulse-scale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.animate-pulse-scale {
+    animation: pulse-scale 4s ease-in-out infinite;
+}
+
+/* Logo hover effects */
+.car-logo-container:hover {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.car-logo-container:hover .animate-road-move {
+    animation-duration: 0.8s;
+}
+
+.car-logo-container:hover .animate-speed-line-1,
+.car-logo-container:hover .animate-speed-line-2,
+.car-logo-container:hover .animate-speed-line-3 {
+    animation-duration: 1s;
+}
+
+/* Logo shine effect */
+@keyframes logo-shine {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.car-logo-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 200% 100%;
+    animation: logo-shine 3s infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.car-logo-container:hover::after {
+    opacity: 1;
+}
+
+/* Logo text glow effect */
+.animate-logo-text:hover {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Dark mode specific styles */
+@media (prefers-color-scheme: dark) {
+    .car-logo-container {
+        box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    }
+    
+    .car-logo-container:hover {
+        box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+    }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .animate-speed-line-1,
+    .animate-speed-line-2,
+    .animate-speed-line-3 {
+        display: none;
+    }
+    
+    .animate-logo-text {
+        animation-duration: 5s;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .animate-road-move,
+    .animate-speed-line-1,
+    .animate-speed-line-2,
+    .animate-speed-line-3,
+    .animate-car-hover,
+    .animate-pulse-glow,
+    .animate-logo-text,
+    .animate-pulse-scale,
+    .car-logo-container::after {
+        animation: none;
+    }
+}

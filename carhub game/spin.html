@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarHub360 - Spin the Wheel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .wheel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            flex-direction: column;
+        }
+        
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border: 10px solid #00d4ff;
+            border-radius: 50%;
+            position: relative;
+            background: conic-gradient(
+                #ff007f 0deg 60deg,
+                #ef4444 60deg 120deg,
+                #10b981 120deg 180deg,
+                #8b5cf6 180deg 240deg,
+                #f97316 240deg 300deg,
+                #00d4ff 300deg 360deg
+            );
+            transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+        }
+        
+        .wheel-pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid #ff007f;
+            z-index: 10;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 127, 0.6));
+        }
+        
+        .spin-button {
+            margin-top: 40px;
+            background: linear-gradient(135deg, #ff007f, #cc0066);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 0, 127, 0.4);
+        }
+        
+        .spin-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 0, 127, 0.6);
+        }
+        
+        .spin-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        body {
+            background: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="wheel-container">
+        <h1 class="section-title" style="margin-bottom: 40px;">🎰 Spin the Wheel</h1>
+        
+        <div class="wheel-pointer"></div>
+        <div class="wheel" id="wheel"></div>
+        
+        <button class="spin-button" id="spinBtn">SPIN NOW!</button>
+        
+        <div id="result" style="margin-top: 20px; font-size: 1.2rem; text-align: center;"></div>
+    </div>
+
+    <script>
+        const wheel = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spinBtn');
+        const result = document.getElementById('result');
+        
+        const prizes = [
+            { name: '10% OFF', code: 'CH360-10OFF' },
+            { name: '15% OFF', code: 'CH360-15OFF' },
+            { name: '5% OFF', code: 'CH360-5OFF' },
+            { name: '20% OFF', code: 'CH360-20OFF' },
+            { name: 'FREE SHIPPING', code: 'CH360-FREESHIP' },
+            { name: '25% OFF', code: 'CH360-25OFF' }
+        ];
+        
+        spinBtn.addEventListener('click', () => {
+            spinBtn.disabled = true;
+            spinBtn.textContent = 'SPINNING...';
+            
+            const randomSpin = Math.floor(Math.random() * 360) + 1440; // At least 4 full rotations
+            wheel.style.transform = `rotate(${randomSpin}deg)`;
+            
+            setTimeout(() => {
+                const finalAngle = randomSpin % 360;
+                const prizeIndex = Math.floor((360 - finalAngle) / 60);
+                const prize = prizes[prizeIndex];
+                
+                showResult(prize);
+                spinBtn.disabled = false;
+                spinBtn.textContent = 'SPIN AGAIN!';
+            }, 3000);
+        });
+        
+        function showResult(prize) {
+            result.innerHTML = `
+                <div style="background: rgba(0, 212, 255, 0.1); padding: 20px; border-radius: 15px; border: 1px solid #00d4ff; box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);">
+                    <h3 style="color: #ff007f; margin-bottom: 10px; text-shadow: 0 0 10px rgba(255, 0, 127, 0.4);">🎉 You Won!</h3>
+                    <p style="color: #ffffff; font-size: 1.1rem;">${prize.name}</p>
+                    <p style="color: #00d4ff; font-weight: 600; font-size: 1.2rem; margin-top: 10px; text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);">${prize.code}</p>
+                </div>
+            `;
+            
+            // Save reward
+            try {
+                const rewards = JSON.parse(localStorage.getItem('carhub360_rewards') || '[]');
+                rewards.push({
+                    code: prize.code,
+                    timestamp: new Date().toISOString(),
+                    used: false
+                });
+                localStorage.setItem('carhub360_rewards', JSON.stringify(rewards));
+            } catch (error) {
+                console.error('Error saving reward:', error);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarHub360 - Scratch Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .scratch-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            flex-direction: column;
+        }
+        
+        .scratch-card {
+            position: relative;
+            width: 400px;
+            height: 250px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid #00d4ff;
+        }
+        
+        .scratch-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: crosshair;
+        }
+        
+        .new-card-btn {
+            margin-top: 30px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+        
+        body {
+            background: #000000;
+        }
+        
+        .instructions {
+            margin-bottom: 20px;
+            color: #94a3b8;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="scratch-container">
+        <h1 class="section-title" style="margin-bottom: 20px;">🎫 Scratch Card</h1>
+        <p class="instructions">Scratch the card to reveal your prize!</p>
+        
+        <div class="scratch-card">
+            <div class="scratch-background" id="prizeArea">
+                <div id="prizeText">🎉 You Won!</div>
+                <div id="prizeAmount">15% OFF</div>
+                <div id="prizeCode">CH360-15OFF</div>
+            </div>
+            <canvas class="scratch-canvas" id="scratchCanvas" width="400" height="250"></canvas>
+        </div>
+        
+        <button class="new-card-btn" id="newCardBtn">Get New Card</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('scratchCanvas');
+        const ctx = canvas.getContext('2d');
+        const prizeText = document.getElementById('prizeText');
+        const prizeAmount = document.getElementById('prizeAmount');
+        const prizeCode = document.getElementById('prizeCode');
+        const newCardBtn = document.getElementById('newCardBtn');
+        
+        let isScratching = false;
+        let scratchedPercentage = 0;
+        
+        const prizes = [
+            { amount: '5% OFF', code: 'CH360-5OFF' },
+            { amount: '10% OFF', code: 'CH360-10OFF' },
+            { amount: '15% OFF', code: 'CH360-15OFF' },
+            { amount: '20% OFF', code: 'CH360-20OFF' },
+            { amount: 'FREE SHIPPING', code: 'CH360-FREESHIP' },
+            { amount: '$5 OFF', code: 'CH360-5DOLLAR' }
+        ];
+        
+        function initCard() {
+            // Create scratch surface
+            ctx.fillStyle = '#374151';
+            ctx.fillRect(0, 0, 400, 250);
+            
+            // Add scratch instruction
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 24px Poppins';
+            ctx.textAlign = 'center';
+            ctx.fillText('SCRATCH HERE', 200, 130);
+            ctx.font = '16px Poppins';
+            ctx.fillText('to reveal your prize!', 200, 155);
+            
+            // Set random prize
+            const randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
+            prizeAmount.textContent = randomPrize.amount;
+            prizeCode.textContent = randomPrize.code;
+            
+            scratchedPercentage = 0;
+        }
+        
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+        
+        function scratch(x, y) {
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 20, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        
+        function checkScratchPercentage() {
+            const imageData = ctx.getImageData(0, 0, 400, 250);
+            let transparent = 0;
+            
+            for (let i = 3; i < imageData.data.length; i += 4) {
+                if (imageData.data[i] === 0) {
+                    transparent++;
+                }
+            }
+            
+            scratchedPercentage = (transparent / (imageData.data.length / 4)) * 100;
+            
+            if (scratchedPercentage > 30) {
+                // Auto-reveal the rest
+                ctx.clearRect(0, 0, 400, 250);
+                saveReward();
+            }
+        }
+        
+        function saveReward() {
+            try {
+                const rewards = JSON.parse(localStorage.getItem('carhub360_rewards') || '[]');
+                rewards.push({
+                    code: prizeCode.textContent,
+                    timestamp: new Date().toISOString(),
+                    used: false
+                });
+                localStorage.setItem('carhub360_rewards', JSON.stringify(rewards));
+            } catch (error) {
+                console.error('Error saving reward:', error);
+            }
+        }
+        
+        // Mouse events
+        canvas.addEventListener('mousedown', (e) => {
+            isScratching = true;
+            const pos = getMousePos(e);
+            scratch(pos.x, pos.y);
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            if (isScratching) {
+                const pos = getMousePos(e);
+                scratch(pos.x, pos.y);
+                checkScratchPercentage();
+            }
+        });
+        
+        canvas.addEventListener('mouseup', () => {
+            isScratching = false;
+        });
+        
+        // Touch events
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const pos = getMousePos(touch);
+            scratch(pos.x, pos.y);
+        });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const pos = getMousePos(touch);
+            scratch(pos.x, pos.y);
+            checkScratchPercentage();
+        });
+        
+        newCardBtn.addEventListener('click', initCard);
+        
+        // Initialize first card
+        initCard();
+    </script>
+</body>
+</html>

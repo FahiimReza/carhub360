@@ -1,0 +1,72 @@
+$parentDir = 'assets/car-images'
+New-Item -ItemType Directory -Path $parentDir -Force | Out-Null
+
+$carFolders = @(
+    'porsche_911_carrera',
+    'audi_a6',
+    'tesla_model_3_performance',
+    'bmw_x5_m',
+    'toyota_land_cruiser_300',
+    'hyundai_ioniq_5',
+    'lamborghini_huracan',
+    'mercedes_benz_e_class',
+    'nissan_sylphy',
+    'aston_martin_db11',
+    'rolls_royce_phantom',
+    'bentley_bentayga',
+    'toyota_fortuner',
+    'honda_city',
+    'kia_sonet',
+    'mclaren_720s',
+    'porsche_cayenne_turbo',
+    'audi_q8',
+    'tesla_model_y',
+    'chevrolet_trailblazer',
+    'isuzu_d_max',
+    'land_rover_defender',
+    'mercedes_benz_s_class',
+    'nissan_gt_r',
+    'audi_a4',
+    'tesla_model_s_plaid',
+    'bmw_m5',
+    'toyota_rav4',
+    'hyundai_creta',
+    'kia_telluride',
+    'mercedes_benz_c_class',
+    'mitsubishi_xpander',
+    'proton_x70',
+    'bentley_continental_gt',
+    'toyota_allion_premio',
+    'ferrari_roma',
+    'jaguar_i_pace',
+    'land_rover_discovery',
+    'porsche_taycan',
+    'audi_rs7',
+    'tesla_model_x',
+    'bmw_i7',
+    'hyundai_ioniq_6',
+    'lamborghini_urus',
+    'mercedes_benz_amg_gt',
+    'nissan_leaf',
+    'aston_martin_vantage',
+    'rolls_royce_cullinan',
+    'bmw_m3',
+    'toyota_supra',
+    'honda_civic',
+    'kia_ev6',
+    'mclaren_artura',
+    'mg_hector',
+    'porsche_macan',
+    'audi_e_tron_gt',
+    'toyota_corolla_altis',
+    'ferrari_f8_tributo',
+    'jaguar_f_type',
+    'land_rover_range_rover_vogue'
+)
+
+foreach ($folder in $carFolders) {
+    $path = Join-Path $parentDir $folder
+    New-Item -ItemType Directory -Path $path -Force | Out-Null
+}
+
+Write-Output 'Created assets/car-images and all car model subfolders.'

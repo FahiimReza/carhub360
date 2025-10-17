@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>3D Car Configurator - CarHub360</title>
+    <meta name="description" content="Build and customize your dream car with our interactive 3D configurator">
+    <meta name="keywords" content="3D car configurator, customize car, build car, CarHub360">
+    
+    <meta property="og:title" content="3D Car Configurator - CarHub360">
+    <meta property="og:description" content="Interactive 3D car building experience">
+    
+    <meta name="twitter:title" content="3D Car Configurator - CarHub360">
+    <meta name="twitter:description" content="Interactive 3D car building experience">
+
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <link href="dark-theme.css" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff4081;
+            --accent-color: #ffab40;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #ff4081 100%);
+        }
+    }
+
+    @layer base {
+        body {
+            @apply text-[var(--text-primary)] font-sans;
+            background: var(--bg-primary);
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--bg-primary);
+        }
+
+        html, body, #root {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    @layer components {
+        .glass-card {
+            @apply backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300;
+            background: var(--bg-card);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            @apply px-4 py-2 rounded-lg font-semibold transition-all duration-200 text-white text-sm;
+            background: var(--gradient-primary);
+        }
+        
+        .btn-secondary {
+            @apply px-4 py-2 rounded-lg font-semibold border-2 transition-all duration-200 text-sm;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+    }
+
+    @layer utilities {
+        .viewer-container {
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        .sidebar {
+            @apply bg-black/80 backdrop-blur-xl border-r border-white/10 overflow-y-auto;
+        }
+
+        .model-btn {
+            @apply w-full p-3 rounded-lg text-left transition-all text-sm;
+        }
+
+        .color-swatch {
+            @apply w-10 h-10 rounded-full border-2 transition-all flex items-center justify-center text-xs font-bold;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel" src="components/Viewport3D.js"></script>
+    <script type="text/babel" src="configurator-app.js"></script>
+    <script src="theme-switcher.js"></script>
+</body>
+</html>

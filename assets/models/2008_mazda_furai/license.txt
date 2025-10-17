@@ -1,0 +1,11 @@
+Model Information:
+* title:	2008 Mazda Furai
+* source:	https://sketchfab.com/3d-models/2008-mazda-furai-693b5d98f7634c71958aed639f39fbee
+* author:	OUTPISTON (https://sketchfab.com/outpiston)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "2008 Mazda Furai" (https://sketchfab.com/3d-models/2008-mazda-furai-693b5d98f7634c71958aed639f39fbee) by OUTPISTON (https://sketchfab.com/outpiston) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

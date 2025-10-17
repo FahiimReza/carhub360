@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Login - CarHub360</title>
+    <meta name="description" content="Login or create account on CarHub360 - Bangladesh's premier car rental and buying platform">
+    <meta name="keywords" content="login, register, CarHub360, car rental Bangladesh">
+    
+    <meta property="og:title" content="Login - CarHub360">
+    <meta property="og:description" content="Login to access premium car rental and buying services">
+    
+    <meta name="twitter:title" content="Login - CarHub360">
+    <meta name="twitter:description" content="Login to access premium car rental and buying services">
+
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <link href="dark-theme.css" rel="stylesheet">
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff4081;
+            --accent-color: #ffab40;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #ff4081 100%);
+        }
+    }
+
+    @layer base {
+        body {
+            @apply text-[var(--text-primary)] font-sans;
+            background: var(--bg-primary);
+        }
+        
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--bg-primary);
+        }
+    }
+
+    @layer components {
+        .glass-card {
+            @apply backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300;
+            background: var(--bg-card);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white;
+            background: var(--gradient-primary);
+        }
+        
+        .input-field {
+            @apply w-full p-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-[var(--bg-secondary)] text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:border-[var(--primary-color)] focus:outline-none transition-colors;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel" src="utils/mockDatabase.js"></script>
+    <script type="text/babel" src="components/LoginForm.js"></script>
+    <script type="text/babel" src="login-app.js"></script>
+    <script src="theme-switcher.js"></script>
+</body>
+</html>

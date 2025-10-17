@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Admin Dashboard - CarHub360</title>
+    <meta name="description" content="Admin dashboard for managing cars and users on CarHub360">
+    <meta name="keywords" content="admin, dashboard, car management, CarHub360">
+    
+    <meta property="og:title" content="Admin Dashboard - CarHub360">
+    <meta property="og:description" content="Manage cars and users on CarHub360">
+    
+    <meta name="twitter:title" content="Admin Dashboard - CarHub360">
+    <meta name="twitter:description" content="Manage cars and users on CarHub360">
+
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <link href="dark-theme.css" rel="stylesheet">
+    <link href="logo-animations.css" rel="stylesheet">
+    <link href="centered-navigation.css" rel="stylesheet">
+    <script type="text/babel" src="utils/iconLoader.js"></script>
+
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff4081;
+            --accent-color: #ffab40;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #ff4081 100%);
+        }
+    }
+
+    @layer base {
+        body {
+            @apply text-[var(--text-primary)] font-sans pt-20; /* Added padding-top to account for fixed header */
+            background: var(--bg-primary);
+        }
+        
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--bg-primary);
+        }
+    }
+
+    @layer components {
+        .glass-card {
+            @apply backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300;
+            background: var(--bg-card);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white;
+            background: var(--gradient-primary);
+        }
+        
+        .input-field {
+            @apply w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-[var(--bg-secondary)] text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:border-[var(--primary-color)] focus:outline-none;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script>
+        // Initialize Chart.js to prevent naming conflicts
+        const ChartJS = window.Chart;
+    </script>
+    
+    <script type="text/babel" src="utils/mockDatabase.js"></script>
+    <script type="text/babel" src="utils/exportUtils.js"></script>
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/SearchModal.js"></script>
+    <script type="text/babel" src="components/DashboardMetrics.js"></script>
+    <script type="text/babel" src="components/AnalyticsCharts.js"></script>
+    <script type="text/babel" src="components/ExportModal.js"></script>
+    <script type="text/babel" src="components/AnimatedCar.js"></script>
+    <script type="text/babel" src="components/AdminDashboard.js"></script>
+    <script type="text/babel" src="admin-app.js"></script>
+    <script type="text/babel" src="components/AdminMessages.js"></script>
+    <script src="theme-switcher.js"></script>
+</body>
+</html>

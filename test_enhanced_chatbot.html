@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced ChatBot Test - CarHub360</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <link href="dark-theme.css" rel="stylesheet">
+    <link href="logo-animations.css" rel="stylesheet">
+    <link href="centered-navigation.css" rel="stylesheet">
+    
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff4081;
+            --accent-color: #ffab40;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #ff4081 100%);
+        }
+    }
+
+    @layer base {
+        body {
+            @apply text-[var(--text-primary)] font-sans;
+            background: var(--bg-primary);
+        }
+    }
+
+    @layer components {
+        .glass-card {
+            @apply backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300;
+            background: var(--bg-card);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    @keyframes slide-up {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-slide-up {
+        animation: slide-up 0.6s ease-out forwards;
+    }
+    
+    @keyframes pulse-scale {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+    .animate-pulse-scale {
+        animation: pulse-scale 2s ease-in-out infinite;
+    }
+    
+    .icon-message-circle:before {
+        content: '💬';
+        font-size: inherit;
+    }
+    
+    .icon-bot:before {
+        content: '🤖';
+        font-size: inherit;
+    }
+    
+    .icon-x:before {
+        content: '✕';
+        font-size: inherit;
+    }
+    
+    .icon-send:before {
+        content: '📤';
+        font-size: inherit;
+    }
+    
+    .icon-star:before {
+        content: '⭐';
+        font-size: inherit;
+    }
+    
+    .icon-car:before {
+        content: '🚗';
+        font-size: inherit;
+    }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen p-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] bg-clip-text text-transparent">
+                Enhanced ChatBot Test Page
+            </h1>
+            
+            <div class="glass-card p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Test Features:</h2>
+                <ul class="space-y-2 text-[var(--text-secondary)]">
+                    <li>✅ Dynamic suggestions based on conversation context</li>
+                    <li>✅ Car recommendations with reasoning</li>
+                    <li>✅ Interactive car cards in chat</li>
+                    <li>✅ Follow-up questions that guide users</li>
+                    <li>✅ State management across conversation</li>
+                    <li>✅ Comparison tools</li>
+                    <li>✅ Personalized responses</li>
+                </ul>
+            </div>
+            
+            <div class="glass-card p-6">
+                <h2 class="text-xl font-semibold mb-4">Test Scenarios:</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white/5 rounded-lg p-4">
+                        <h3 class="font-medium mb-2">Rental Journey</h3>
+                        <p class="text-sm text-[var(--text-secondary)] mb-2">Test the complete rental flow</p>
+                        <ol class="text-xs text-[var(--text-secondary)] space-y-1">
+                            <li>1. Click "I want to rent a car"</li>
+                            <li>2. Select car type (SUV, Sedan, etc.)</li>
+                            <li>3. Choose budget range</li>
+                            <li>4. Select rental duration</li>
+                            <li>5. View recommendations</li>
+                            <li>6. Compare cars</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="bg-white/5 rounded-lg p-4">
+                        <h3 class="font-medium mb-2">Purchase Journey</h3>
+                        <p class="text-sm text-[var(--text-secondary)] mb-2">Test the car buying flow</p>
+                        <ol class="text-xs text-[var(--text-secondary)] space-y-1">
+                            <li>1. Click "I want to buy a car"</li>
+                            <li>2. Select category</li>
+                            <li>3. Set budget range</li>
+                            <li>4. View recommendations</li>
+                            <li>5. Ask for details</li>
+                            <li>6. Get financing info</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="bg-white/5 rounded-lg p-4">
+                        <h3 class="font-medium mb-2">Natural Language</h3>
+                        <p class="text-sm text-[var(--text-secondary)] mb-2">Test natural queries</p>
+                        <ul class="text-xs text-[var(--text-secondary)] space-y-1">
+                            <li>• "I need a car for my family"</li>
+                            <li>• "What's the best SUV under ৳5000?"</li>
+                            <li>• "Compare Toyota and Honda"</li>
+                            <li>• "Show me electric cars"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white/5 rounded-lg p-4">
+                        <h3 class="font-medium mb-2">Advanced Features</h3>
+                        <p class="text-sm text-[var(--text-secondary)] mb-2">Test smart features</p>
+                        <ul class="text-xs text-[var(--text-secondary)] space-y-1">
+                            <li>• Follow-up questions</li>
+                            <li>• Context awareness</li>
+                            <li>• Preference memory</li>
+                            <li>• Dynamic suggestions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include all the enhanced chatbot files -->
+    <script type="text/babel" src="utils/mockDatabase.js"></script>
+    <script type="text/babel" src="utils/ConversationStateManager.js"></script>
+    <script type="text/babel" src="utils/CarKnowledgeBase.js"></script>
+    <script type="text/babel" src="utils/EnhancedAIResponseSystem.js"></script>
+    <script type="text/babel" src="utils/FollowUpQuestionSystem.js"></script>
+    <script type="text/babel" src="components/ChatBot.js"></script>
+    
+    <script type="text/babel">
+        // Simple test app to render just the chatbot
+        function TestApp() {
+            return (
+                <div>
+                    <ChatBot />
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.body.appendChild(document.createElement('div')));
+        root.render(<TestApp />);
+    </script>
+</body>
+</html>

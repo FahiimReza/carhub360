@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Dashboard - CarHub360</title>
+    <meta name="description" content="User dashboard for managing profile and car bookings on CarHub360">
+    <meta name="keywords" content="dashboard, profile, bookings, CarHub360">
+    
+    <meta property="og:title" content="Dashboard - CarHub360">
+    <meta property="og:description" content="Manage your profile and bookings">
+    
+    <meta name="twitter:title" content="Dashboard - CarHub360">
+    <meta name="twitter:description" content="Manage your profile and bookings">
+
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <link href="dark-theme.css" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff4081;
+            --accent-color: #ffab40;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #ff4081 100%);
+        }
+    }
+
+    @layer base {
+        body {
+            @apply text-[var(--text-primary)] font-sans;
+            background: var(--bg-primary);
+        }
+        
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--bg-primary);
+        }
+    }
+
+    @layer components {
+        .glass-card {
+            @apply backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300;
+            background: var(--bg-card);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white;
+            background: var(--gradient-primary);
+        }
+    }
+    </style>
+    
+    <style>
+      @keyframes slide-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-slide-up {
+        animation: slide-up 0.6s ease-out forwards;
+      }
+      
+      @keyframes floating {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .floating-animation {
+        animation: floating 3s ease-in-out infinite;
+      }
+      
+      @keyframes pulse-scale {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+      .animate-pulse-scale {
+        animation: pulse-scale 2s ease-in-out infinite;
+      }
+      
+      .hover-shine::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+      }
+      .hover-shine:hover::before {
+        left: 100%;
+      }
+      
+      .hover-lift {
+        transition: all 0.3s ease;
+      }
+      .hover-lift:hover {
+        transform: translateY(-2px);
+      }
+      
+      .hover-glow {
+        transition: all 0.3s ease;
+      }
+      .hover-glow:hover {
+        box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+      }
+      
+      .magnetic-effect {
+        transition: transform 0.1s ease-out;
+      }
+      
+      .icon-car:before {
+        content: '🚗';
+        font-size: inherit;
+      }
+      
+      .icon-user:before {
+        content: '👤';
+        font-size: inherit;
+      }
+      
+      .icon-menu:before {
+        content: '☰';
+        font-size: inherit;
+      }
+      
+      .icon-x:before {
+        content: '✕';
+        font-size: inherit;
+      }
+      
+      .icon-search:before {
+        content: '🔍';
+        font-size: inherit;
+      }
+      
+      .icon-key:before {
+        content: '🔑';
+        font-size: inherit;
+      }
+      
+      .icon-shopping-cart:before {
+        content: '🛒';
+        font-size: inherit;
+      }
+      
+      .icon-wrench:before {
+        content: '🔧';
+        font-size: inherit;
+      }
+      
+      .icon-zap:before {
+        content: '⚡';
+        font-size: inherit;
+      }
+      
+      .icon-log-out:before {
+        content: '🚪';
+        font-size: inherit;
+      }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel" src="utils/mockDatabase.js"></script>
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/NotificationPanel.js"></script>
+    <script type="text/babel" src="components/UserDashboard.js"></script>
+    <script type="text/babel" src="dashboard-app.js"></script>
+    <script src="theme-switcher.js"></script>
+</body>
+</html>
